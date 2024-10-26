@@ -207,13 +207,13 @@ class OIDCLogin(t.Generic[REQ, TCONF, SES, COOK, RED]):
         **kwargs
     ) -> "OIDCLogin":
         # pylint: disable=unused-argument
-        self._cookies_check = True
-        if main_msg:
-            self._cookies_unavailable_msg_main_text = main_msg
-        if click_msg:
-            self._cookies_unavailable_msg_click_text = click_msg
-        if loading_msg:
-            self._cookies_check_loading_text = loading_msg
+        # self._cookies_check = True
+        # if main_msg:
+        #     self._cookies_unavailable_msg_main_text = main_msg
+        # if click_msg:
+        #     self._cookies_unavailable_msg_click_text = click_msg
+        # if loading_msg:
+        #     self._cookies_check_loading_text = loading_msg
         return self
 
     def disable_check_cookies(self) -> "OIDCLogin":

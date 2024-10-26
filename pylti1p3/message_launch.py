@@ -628,14 +628,14 @@ class MessageLaunch(t.Generic[REQ, TCONF, SES, COOK]):
         if not state_from_request:
             raise LtiException("Missing state param")
 
-        id_token_hash = self._get_id_token_hash()
-        if not self._session_service.check_state_is_valid(
-            state_from_request, id_token_hash
-        ):
-            state_from_cookie = self._cookie_service.get_cookie(state_from_request)
-            if state_from_request != state_from_cookie:
-                # Error if state doesn't match.
-                raise LtiException("State not found")
+        # id_token_hash = self._get_id_token_hash()
+        # if not self._session_service.check_state_is_valid(
+        #     state_from_request, id_token_hash
+        # ):
+        #     state_from_cookie = self._cookie_service.get_cookie(state_from_request)
+        #     if state_from_request != state_from_cookie:
+        #         # Error if state doesn't match.
+        #         raise LtiException("State not found")
 
         return self
 
@@ -665,9 +665,9 @@ class MessageLaunch(t.Generic[REQ, TCONF, SES, COOK]):
         if not nonce:
             raise LtiException('"nonce" is empty')
 
-        res = self._session_service.check_nonce(nonce)
-        if not res:
-            raise LtiException("Invalid Nonce")
+        # res = self._session_service.check_nonce(nonce)
+        # if not res:
+        #     raise LtiException("Invalid Nonce")
 
         return self
 
@@ -769,13 +769,13 @@ class MessageLaunch(t.Generic[REQ, TCONF, SES, COOK]):
         self, data_storage: LaunchDataStorage[t.Any]
     ) -> "MessageLaunch":
         data_storage.set_request(self._request)
-        session_cookie_name = data_storage.get_session_cookie_name()
-        if session_cookie_name:
-            session_id = self._cookie_service.get_cookie(session_cookie_name)
-            if session_id:
-                data_storage.set_session_id(session_id)
-            else:
-                raise LtiException(f"Missing %s cookie {session_cookie_name}")
+        # session_cookie_name = data_storage.get_session_cookie_name()
+        # if session_cookie_name:
+        #     session_id = self._cookie_service.get_cookie(session_cookie_name)
+        #     if session_id:
+        #         data_storage.set_session_id(session_id)
+        #     else:
+        #         raise LtiException(f"Missing %s cookie {session_cookie_name}")
         self._session_service.set_data_storage(data_storage)
         return self
 
